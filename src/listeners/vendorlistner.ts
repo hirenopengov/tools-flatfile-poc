@@ -3,12 +3,7 @@ import { FlatfileListener } from "@flatfile/listener";
 import { recordHook } from "@flatfile/plugin-record-hook";
 import { FlatfileEvent } from "@flatfile/listener";
 import { responseRejectionHandler, RejectionResponse } from "@flatfile/util-response-rejection";
-//import { fetchData } from "./api";
-//import { fetchVendorData } from "./api";
 import axios, { AxiosResponse } from 'axios';
-
-
-
 
 /**
  * Example Listener
