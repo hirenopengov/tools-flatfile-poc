@@ -152,7 +152,6 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
           label: "ALLOW_ORDERING",
           description: "Allow default order Yes",
           config: {
-            //defaultValue: "Y",
             options: [
               { value: "Y", label: "Yes" },
               { value: "N", label: "No" }
@@ -208,39 +207,39 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "LOCAL_VENDOR",
-          type: "string",
+          type: "enum",
           label: "LOCAL_VENDOR",
           description: "The local vendor should be a maximum of one character.",
-          //defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "PRINT_1099",
-          type: "string",
+          type: "enum",
           label: "PRINT_1099",
           description: "The print should be a maximum of one character.",
-          //defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "INSURANCE_REQUIRED",
-          type: "string",
+          type: "enum",
           label: "INSURANCE_REQUIRED",
           description: "The insurance should be a maximum of one character.",
-          //defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "DATE_INSURANCE_EXP",
@@ -261,15 +260,15 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "CONTRACT_VENDOR",
-          type: "string",
+          type: "enum",
           label: "CONTRACT_VENDOR",
           description: "The contract vendor should be a maximum of one character.",
-         // defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "DATE_CONTRACT_EXP",
@@ -279,27 +278,27 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "MISCELLANEOUS_VENDOR",
-          type: "string",
+          type: "enum",
           label: "MISCELLANEOUS_VENDOR",
           description: "The miscellaneous vendor should be a maximum of one character.",
-          //defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "WITHHOLDING_USED",
-          type: "string",
+          type: "enum",
           label: "WITHHOLDING_USED",
           description: "The withholding used should be a maximum of one character.",
-          //defaultValue: "N"
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "VENDOR_USER1",
@@ -375,38 +374,41 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "BANK_ACCOUNT_TYPE",
-          type: "string",
+          type: "enum",
           label: "BANK_ACCOUNT_TYPE",
-          description: "The bank account type should be a maximum of one character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The bank account type should be a maximum of one character.",
+          config: {
+            options: [
+              { value: "", label: "" },
+              { value: "C", label: "Checking" },
+              { value: "S", label: "Savings" }
+            ],
+          }
         },
         {
           key: "HUB_VENDOR",
-          type: "string",
+          type: "enum",
           label: "HUB_VENDOR",
-          //defaultValue: "N",
-          description: "The hub vendor should be a maximum of one character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The hub vendor should be a maximum of one character.",
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "CERTIFIED_CATALOG_VENDOR",
-          type: "string",
+          type: "enum",
           label: "CERTIFIED_CATALOG_VENDOR",
           //defaultValue: "N",
-          description: "The certified catalog vendor must be a maximum of a single character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The certified catalog vendor must be a maximum of a single character.",
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "CERTIFICATION_EFFECTIVE_FROM",
@@ -444,16 +446,18 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "WITHHOLDING_FLAT_AMOUNT",
-          type: "number",
+         // type: "number",
+          type: "string",
           label: "WITHHOLDING_FLAT_AMOUNT",
-          description: "The withholding flat amount should be a maximum of 14 including with 2 decimals",
+          description: "The withholding flat amount should be a maximum of 14 digits including with 2 decimals",
           //defaultValue: "0",
           //   "minimum": 0,
           //   "maximum": 99999999999.99
         },
         {
           key: "WITHHOLDING_PERCENTAGE",
-          type: "number",
+          //type: "number",
+          type: "string",
           label: "WITHHOLDING_PERCENTAGE",
           description: "The withholding percentage should be less than 1",
           //defaultValue: "0",
@@ -479,7 +483,6 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
           label: "PAYMENT_TYPE",
           description: "The payment type should be a maximum of single character.",
           config: {
-            //defaultValue: "C",
             options: [
               { value: "C", label: "Check" },
               { value: "W", label: "Wire Transfer" },
@@ -491,14 +494,17 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "STANDARD_ENTRY_CLASS_CODE",
-          type: "string",
+          type: "enum",
           label: "STANDARD_ENTRY_CLASS_CODE",
-          description: "The standard entry class code should be 3 character."
-          //   "regexp": {
-          //     "pattern": "^.{3}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The standard entry class code should be 3 character.",
+          config: {
+            options: [
+              { value: "", label: "" },
+              { value: "CCD", label: "CCD - Commercial" },
+              { value: "PPD", label: "PPD- Consumer" },
+              { value: "CTX", label: "CTX - Commercial" }
+            ],
+          }
         },
         {
           key: "ACH_EMAIL_ADDRESS_LIST",
@@ -513,15 +519,15 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "ATTORNEY_VENDOR",
-          type: "string",
+          type: "enum",
           label: "ATTORNEY_VENDOR",
-          //defaultValue: "N",
-          description: "The attorney vendor should be a maximum of single character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The attorney vendor should be a maximum of single character.",
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "TAX_PAYMENT_TYPE",
@@ -536,15 +542,15 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "IS_SSIS_VENDOR",
-          type: "string",
+          type: "enum",
           label: "IS_SSIS_VENDOR",
-          //defaultValue: "N",
-          description: "The ssis vendor should be a maximum of single character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The ssis vendor should be a maximum of single character.",
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "SOCIAL_SECURITY_NUMBER",
@@ -577,15 +583,16 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
         },
         {
           key: "INDEPENDENT_CONTRACTOR",
-          type: "string",
+          type: "enum",
           label: "INDEPENDENT_CONTRACTOR",
           //defaultValue: "N",
-          description: "The independent contractor should be a maximum of single character."
-          //   "regexp": {
-          //     "pattern": "^.{0,1}$",
-          //     "flags": "",
-          //     "ignoreBlanks": true
-          //   },
+          description: "The independent contractor should be a maximum of single character.",
+          config: {
+            options: [
+              { value: "N", label: "No" },
+              { value: "Y", label: "Yes" }
+            ],
+          }
         },
         {
           key: "OPERATION",
