@@ -8,6 +8,12 @@ export const workbook: Flatfile.CreateWorkbookConfig = {
       name: "Vendor",
       description: "A list of products available for sale",
       slug: "Vendors",
+      access: [
+        "import",
+        "edit",
+        "delete",
+        "add",
+      ],
       allowAdditionalFields: true,
       fields: [
         {

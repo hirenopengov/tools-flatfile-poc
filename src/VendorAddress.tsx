@@ -6,8 +6,10 @@ import { workbook } from "./vendoraddressworkbook";
 export default function VendorAddress() {
   const spaceProps: ISpace = {
     name: "Embedded Space",
-    publishableKey: "pk_117cf6817dc74a138bd497ea9f33388f",
-    environmentId: "us_env_oEn4qvuW",
+    // publishableKey: "pk_117cf6817dc74a138bd497ea9f33388f",
+    // environmentId: "us_env_oEn4qvuW",
+    publishableKey: "pk_942ac8e331514610b72ebfbd3c0d9c94",
+    environmentId: "us_env_vj8tcigs",
     workbook,
     listener,
     sidebarConfig: {
@@ -37,10 +39,10 @@ export default function VendorAddress() {
 
   return (
     <div className="content">
-      
+
       {/*Button to trigger the modal */}
       <div>
-		     <button className="contrast" onClick={onOpenSpace}>Vendor Address Import
+        <button className="contrast" onClick={onOpenSpace}>Vendor Address Import
         </button>
         {showSpace && <Space />}
       </div>

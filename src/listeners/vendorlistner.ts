@@ -43,6 +43,7 @@ const VALIDATIONMESSAGE = {
   WITHHOLDINGMAXAMOUNT: "The withholding flat amount should be a maximum of 14 digits.",
   WITHHOLDINGANYONESHOULDHAVE: "Either the withholding percentage or flat amount must have a value.",
   REQUIRED: "This field is required.",
+  REQUIREDFOROPERATION: "This field is required for Update or Delete.",
   DATEFORMAT: "The required date format should be MM/DD/YYYY.",
   VENDORNUMBER: "The vendor number should be a maximum of 6 digits.",
   VENDORNAME: "The vendor name should be a maximum of 30 characters.",
@@ -227,7 +228,7 @@ export const listener = FlatfileListener.create((listener) => {
         record.validate(
           "VENDOR_NUMBER",
           (value) => { if (!value) { return false; } return true; },
-          VALIDATIONMESSAGE.REQUIRED
+          VALIDATIONMESSAGE.REQUIREDFOROPERATION
         );
       }
 
@@ -520,7 +521,7 @@ export const listener = FlatfileListener.create((listener) => {
             subtype
           },
         };
-
+       
         const response: AxiosResponse<any> = await axios.post(
           webhookReceiver,
           {
@@ -530,9 +531,11 @@ export const listener = FlatfileListener.create((listener) => {
           {
             headers: {
               "Content-Type": "application/json",
+              
             },
           }
         );
+        
         const result = response.data;
 
         interface ErrorRecord {
@@ -547,6 +550,7 @@ export const listener = FlatfileListener.create((listener) => {
 
         const responseErrorListArray: any[] = [];
         //let responseErrorList: ErrorRecordList;
+        
         if (result.res?.errors) {
           let serverResponseError: string = result.res.message;
           console.log(serverResponseError);
@@ -610,16 +614,22 @@ export const listener = FlatfileListener.create((listener) => {
               await api.jobs.complete(jobId, outcome);
             }
             return;
-          } else {
+          } 
+        }else {
+          alert('ss');
+          if (result.res?.errors) {
+            alert('xxxx');
             throw new Error("Failed to submit data to webhook.site");
-            // console.log(serverResponseError);
-            // await api.jobs.fail(jobId, {
-            //   outcome: {
-            //     message: `This job failed. Reason is: ${serverResponseError}.`,
-            //   },
-            // });
-            return;
+          }else{
+            alert('zzzz');
+          await api.jobs.complete(jobId, {
+            outcome: {
+              message: `Request Submittes Succesfully: ${result.res?.message}.`,
+            },
+          });
+          alert('2222');
           }
+          //return;
         }
         // Otherwise, complete the job
       } catch (error) {
